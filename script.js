@@ -1,10 +1,27 @@
 function threeSum(arr, target) {
-// write your code here
-	let ind,sum=0;
-  arr.sort((a,b)=>a-b;) ;
-	arr.map((index)=> if(arr[i]==target) ind=index;);
-	sum=arr[ind-1]+arr[ind]+arr[ind+1];
-	
+  arr.sort((a, b) => a - b);
+  let closestSum = Infinity;
+
+  for (let i = 0; i < arr.length - 2; i++) {
+    let left = i + 1;
+    let right = arr.length - 1;
+
+    while (left < right) {
+      let sum = arr[i] + arr[left] + arr[right];
+
+      if (Math.abs(sum - target) < Math.abs(closestSum - target)) {
+        closestSum = sum;
+      }
+
+      if (sum < target) {
+        left++;
+      } else {
+        right--;
+      }
+    }
+  }
+
+  return closestSum;
 }
 
 module.exports = threeSum;
